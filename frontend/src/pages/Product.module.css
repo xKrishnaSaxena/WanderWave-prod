@@ -1,0 +1,58 @@
+/* Default styles */
+.product {
+  padding: 2.5rem 5rem;
+  background-color: var(--color-dark--1);
+  min-height: calc(100vh);
+}
+
+.product section {
+  /* width: clamp(80rem, 80%, 90rem); */
+  margin: 6rem auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7rem;
+  align-items: center;
+}
+
+.productImage {
+  width: 100%; /* Make the image responsive */
+  max-width: 50rem; /* Set a maximum width to prevent it from getting too large */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.product h2 {
+  font-size: 4rem;
+  line-height: 1.2;
+  margin-bottom: 3rem;
+}
+
+.product p {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.product section a {
+  margin-top: 2rem;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1200px) {
+  .product section {
+    grid-template-columns: 1fr; /* Change to a single column layout on smaller screens */
+    gap: 5rem; /* Reduce the gap between elements */
+  }
+
+  .productImage {
+    max-width: 40rem; /* Adjust max-width for medium screens */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .product {
+    padding: 1rem; /* Adjust padding for smaller screens */
+  }
+
+  .productImage {
+    max-width: 30rem; /* Further adjust max-width for smaller screens */
+  }
+}

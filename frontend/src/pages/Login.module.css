@@ -15,6 +15,10 @@
   width: 48rem;
   margin: 8rem auto;
 }
+.asterisk {
+  color: red;
+  margin-left: 0.25rem;
+}
 
 .row {
   display: flex;

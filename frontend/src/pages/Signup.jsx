@@ -1,10 +1,11 @@
 import styles from "./Login.module.css";
 import PageNav from "../components/PageNav";
 import Button from "../components/Button";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import Alert from "../components/Alert";
 import Spinner from "../components/Spinner";
+import { AuthenticationContext } from "../contexts/AuthContext";
 
 export default function Login() {
   const [name, setName] = useState("");
@@ -14,6 +15,7 @@ export default function Login() {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const { login } = useContext(AuthenticationContext);
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const URL = "https://wanderwave-backend-aa9d.onrender.com";
@@ -48,7 +50,7 @@ export default function Login() {
         // Handle successful signup
         setLoading(false);
         setSuccess("Signup Successful!");
-        // Optionally, you can redirect the user to another page
+        login(email, password);
       } else {
         // Handle errors from the server
         setLoading(false);
@@ -72,22 +74,28 @@ export default function Login() {
           {error && <Alert message={error} type="danger" />}
           {success && <Alert message={success} type="success" />}
           <div className={styles.row}>
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">
+              Name<span className={styles.asterisk}>*</span>
+            </label>
             <input
               type="text"
               id="name"
               onChange={(e) => setName(e.target.value)}
               value={name}
+              required
             />
           </div>
 
           <div className={styles.row}>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">
+              Email<span className={styles.asterisk}>*</span>
+            </label>
             <input
               type="email"
               id="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
+              required
             />
           </div>
           <div className={styles.row}>
@@ -100,23 +108,29 @@ export default function Login() {
             />
           </div>
           <div className={styles.row}>
-            <label htmlFor="password">Password (Length &gt;= 8)</label>
+            <label htmlFor="password">
+              Password (Length &gt;= 8)
+              <span className={styles.asterisk}>*</span>
+            </label>
             <input
               type="password"
               id="password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
+              required
             />
           </div>
           <div className={styles.row}>
             <label htmlFor="passwordConfirm">
               Confirm Password (Length &gt;= 8)
+              <span className={styles.asterisk}>*</span>
             </label>
             <input
               type="password"
               id="passwordConfirm"
               onChange={(e) => setPasswordConfirm(e.target.value)}
               value={passwordConfirm}
+              required
             />
           </div>
 
